@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张鹏吃粑粑动画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 50%, #90EE90 50%, #228B22 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+        
+        /* 太阳 */
+        .sun {
+            position: absolute;
+            top: 30px;
+            right: 80px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #FFD700 0%, #FFA500 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 60px #FFD700;
+            animation: sun-glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes sun-glow {
+            0%, 100% { box-shadow: 0 0 60px #FFD700; }
+            50% { box-shadow: 0 0 100px #FFD700; }
+        }
+        
+        /* 云朵 */
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            animation: cloud-float 25s linear infinite;
+        }
+        
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        .cloud-1 {
+            width: 120px;
+            height: 50px;
+            top: 60px;
+            left: -180px;
+        }
+        
+        .cloud-1::before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 20px;
+        }
+        
+        .cloud-1::after {
+            width: 70px;
+            height: 70px;
+            top: -35px;
+            right: 20px;
+        }
+        
+        .cloud-2 {
+            width: 100px;
+            height: 40px;
+            top: 100px;
+            left: -120px;
+            animation-delay: -12s;
+            animation-duration: 30s;
+        }
+        
+        .cloud-2::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 15px;
+        }
+        
+        .cloud-2::after {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            right: 15px;
+        }
+        
+        @keyframes cloud-float {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(100vw + 300px)); }
+        }
+        
+        /* 山 */
+        .mountain {
+            position: absolute;
+            bottom: 50%;
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-bottom: 280px solid #6B8E23;
+        }
+        
+        .mountain-1 { left: 0%; }
+        .mountain-2 { left: 30%; border-left-width: 250px; border-right-width: 250px; border-bottom-width: 320px; }
+        .mountain-3 { right: 10%; }
+        
+        /* 树 */
+        .tree {
+            position: absolute;
+            bottom: 50%;
+        }
+        
+        .tree-trunk {
+            width: 30px;
+            height: 80px;
+            background: linear-gradient(90deg, #5D4037 0%, #8D6E63 50%, #5D4037 100%);
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+        
+        .tree-top {
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 100px solid #2E7D32;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
+        }
+        
+        .tree-1 { left: 8%; }
+        .tree-2 { left: 25%; }
+        .tree-3 { right: 15%; }
+        .tree-4 { right: 30%; }
+        
+        /* 小路 */
+        .path {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, #D2B48C 0%, #C4A574 50%, #B8976A 100%);
+            clip-path: polygon(0% 100%, 100% 100%, 80% 0%, 20% 0%);
+        }
+        
+        .path::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                #A0522D 0px,
+                #A0522D 20px,
+                transparent 20px,
+                transparent 40px
+            );
+        }
+        
+        /* 房子 */
+        .house {
+            position: absolute;
+            bottom: 50%;
+            right: 8%;
+        }
+        
+        .house-body {
+            width: 120px;
+            height: 90px;
+            background: linear-gradient(180deg, #FFE4B5 0%, #FFDAB9 100%);
+            border: 4px solid #DEB887;
+            position: relative;
+        }
+        
+        .house-roof {
+            width: 0;
+            height: 0;
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-bottom: 60px solid #8B4513;
+            margin-left: -15px;
+        }
+        
+        .house-door {
+            width: 35px;
+            height: 50px;
+            background: linear-gradient(90deg, #5D4037 0%, #8D6E63 50%, #5D4037 100%);
+            margin: 0 auto;
+            margin-top: -50px;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        /* 花 */
+        .flowers {
+            position: absolute;
+            bottom: 50%;
+            font-size: 30px;
+        }
+        
+        .flowers-1 { left: 15%; }
+        .flowers-2 { right: 25%; }
+        
+        /* 人物容器 - 用于整体旋转和移动 */
+        .character-wrapper {
+            position: absolute;
+            bottom: 28%;
+            left: 5%;
+            transition: left 1.5s ease-in-out;
+            z-index: 100;
+        }
+        
+        /* 人物 */
+        .character {
+            position: relative;
+            transform-origin: bottom center;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .character.walking {
+            animation: body-walk 0.5s ease-in-out infinite;
+        }
+        
+        @keyframes body-walk {
+            0%, 100% { 
+                transform: translateY(0) rotate(-2deg);
+            }
+            50% { 
+                transform: translateY(-12px) rotate(2deg);
+            }
+        }
+        
+        .character.bending {
+            animation: bend-down 0.8s ease-in-out forwards;
+        }
+        
+        @keyframes bend-down {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(25deg) translateY(20px); }
+        }
+        
+        .character.standing-up {
+            animation: stand-up 0.6s ease-in-out forwards;
+        }
+        
+        @keyframes stand-up {
+            0% { transform: rotate(25deg) translateY(20px); }
+            100% { transform: rotate(0deg) translateY(0); }
+        }
+        
+        /* 名字标签 */
+        .name-tag {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #FF6B6B 0%, #EE5A5A 100%);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 18px;
+            font-size: 18px;
+            font-weight: bold;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .name-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #EE5A5A;
+        }
+        
+        /* 头 */
+        .p-head {
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(180deg, #FFEAA7 0%, #FDCB6E 100%);
+            border-radius: 50%;
+            border: 4px solid #E17055;
+            position: relative;
+            margin: 0 auto;
+            box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* 头发 */
+        .p-hair {
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+        }
+        
+        /* 眼睛 */
+        .p-eye {
+            position: absolute;
+            width: 22px;
+            height: 28px;
+            background: white;
+            border-radius: 50%;
+            top: 32px;
+            border: 2px solid #2D3436;
+            overflow: hidden;
+        }
+        
+        .p-eye.left { left: 20px; }
+        .p-eye.right { right: 20px; }
+        
+        .p-eye::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: #2D3436;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: eye-move 3s ease-in-out infinite;
+        }
+        
+        .p-eye::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            top: 8px;
+            left: 8px;
+            z-index: 2;
+        }
+        
+        @keyframes eye-move {
+            0%, 100% { transform: translate(-50%, -50%); }
+            25% { transform: translate(-30%, -50%); }
+            75% { transform: translate(-70%, -50%); }
+        }
+        
+        .p-eye.surprised {
+            width: 32px;
+            height: 32px;
+            top: 28px;
+        }
+        
+        .p-eye.surprised::after {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* 眉毛 */
+        .p-eyebrow {
+            position: absolute;
+            width: 28px;
+            height: 6px;
+            background: #2D3436;
+            border-radius: 3px;
+            top: 24px;
+        }
+        
+        .p-eyebrow.left { left: 18px; transform: rotate(-10deg); }
+        .p-eyebrow.right { right: 18px; transform: rotate(10deg); }
+        
+        .p-eyebrow.surprised {
+            top: 18px;
+            transform: rotate(0deg) scaleY(1.8);
+        }
+        
+        /* 鼻子 */
+        .p-nose {
+            position: absolute;
+            width: 18px;
+            height: 14px;
+            background: #E17055;
+            border-radius: 50%;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* 嘴巴 */
+        .p-mouth {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 14px;
+            background: #D63031;
+            border-radius: 0 0 18px 18px;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+        
+        .p-mouth::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 10px;
+            background: #E84393;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        .p-mouth.open {
+            width: 45px;
+            height: 40px;
+            border-radius: 50%;
+            bottom: 12px;
+        }
+        
+        .p-mouth.open::after {
+            width: 30px;
+            height: 20px;
+            bottom: 5px;
+        }
+        
+        .p-mouth.chewing {
+            animation: mouth-chew 0.35s ease-in-out infinite;
+        }
+        
+        @keyframes mouth-chew {
+            0%, 100% { height: 14px; width: 35px; border-radius: 0 0 18px 18px; }
+            50% { height: 25px; width: 40px; border-radius: 50%; }
+        }
+        
+        .p-mouth.happy {
+            width: 40px;
+            height: 20px;
+            border-radius: 0 0 20px 20px;
+            bottom: 15px;
+        }
+        
+        /* 腮红 */
+        .p-blush {
+            position: absolute;
+            width: 22px;
+            height: 14px;
+            background: rgba(255, 182, 193, 0.7);
+            border-radius: 50%;
+            top: 55px;
+        }
+        
+        .p-blush.left { left: 8px; }
+        .p-blush.right { right: 8px; }
+        
+        /* 身体 */
+        .p-body {
+            width: 100px;
+            height: 110px;
+            background: linear-gradient(180deg, #74B9FF 0%, #0984E3 100%);
+            border-radius: 18px 18px 25px 25px;
+            border: 4px solid #0652DD;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* 肚子 */
+        .p-belly {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 60px;
+            background: linear-gradient(180deg, #81ECEC 0%, #00CEC9 100%);
+            border-radius: 50%;
+            transition: all 0.5s;
+            border: 3px solid #00B894;
+        }
+        
+        .p-belly.full {
+            width: 90px;
+            height: 80px;
+            background: linear-gradient(180deg, #55EFC4 0%, #00B894 100%);
+        }
+        
+        /* 手臂 - 关键改进 */
+        .p-arm {
+            position: absolute;
+            top: 120px;
+            width: 30px;
+            height: 80px;
+            background: linear-gradient(180deg, #FFEAA7 0%, #FDCB6E 100%);
+            border-radius: 18px;
+            border: 3px solid #E17055;
+            transform-origin: top center;
+            transition: transform 0.4s ease-in-out;
+        }
+        
+        .p-arm.left { left: -22px; }
+        .p-arm.right { right: -22px; }
+        
+        /* 手掌 */
+        .p-hand {
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 26px;
+            height: 22px;
+            background: #FFEAA7;
+            border-radius: 50%;
+            border: 2px solid #E17055;
+        }
+        
+        /* 手臂动作 */
+        .p-arm.swing-left {
+            animation: arm-swing-left 0.5s ease-in-out infinite;
+        }
+        
+        .p-arm.swing-right {
+            animation: arm-swing-right 0.5s ease-in-out infinite;
+        }
+        
+        @keyframes arm-swing-left {
+            0%, 100% { transform: rotate(-20deg); }
+            50% { transform: rotate(20deg); }
+        }
+        
+        @keyframes arm-swing-right {
+            0%, 100% { transform: rotate(20deg); }
+            50% { transform: rotate(-20deg); }
+        }
+        
+        .p-arm.reach-down {
+            transform: rotate(80deg) !important;
+        }
+        
+        .p-arm.hold-up {
+            transform: rotate(-60deg) translateY(-20px) !important;
+        }
+        
+        .p-arm.eat {
+            transform: rotate(-45deg) !important;
+        }
+        
+        .p-arm.wave {
+            animation: arm-wave 0.8s ease-in-out infinite;
+        }
+        
+        @keyframes arm-wave {
+            0%, 100% { transform: rotate(-30deg); }
+            50% { transform: rotate(-60deg); }
+        }
+        
+        /* 腿 - 关键改进 */
+        .p-leg {
+            position: absolute;
+            bottom: -60px;
+            width: 35px;
+            height: 65px;
+            background: linear-gradient(180deg, #FFEAA7 0%, #FDCB6E 100%);
+            border-radius: 0 0 15px 15px;
+            border: 3px solid #E17055;
+            transform-origin: top center;
+        }
+        
+        /* 鞋子 */
+        .p-shoe {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 42px;
+            height: 16px;
+            background: linear-gradient(180deg, #5D4037 0%, #3E2723 100%);
+            border-radius: 8px 8px 5px 5px;
+        }
+        
+        .p-leg.left { left: 12px; }
+        .p-leg.right { right: 12px; }
+        
+        .p-leg.walk-forward {
+            animation: leg-walk-forward 0.5s ease-in-out infinite;
+        }
+        
+        .p-leg.walk-back {
+            animation: leg-walk-back 0.5s ease-in-out infinite;
+        }
+        
+        @keyframes leg-walk-forward {
+            0%, 100% { transform: rotate(-25deg); }
+            50% { transform: rotate(25deg); }
+        }
+        
+        @keyframes leg-walk-back {
+            0%, 100% { transform: rotate(25deg); }
+            50% { transform: rotate(-25deg); }
+        }
+        
+        /* 粑粑 */
+        .poop {
+            position: absolute;
+            bottom: 25%;
+            left: 45%;
+            font-size: 65px;
+            z-index: 50;
+            transition: all 0.5s ease-in-out;
+            filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.3));
+        }
+        
+        .poop.in-hand {
+            bottom: 45%;
+            left: 55%;
+            font-size: 45px;
+        }
+        
+        .poop.to-mouth {
+            bottom: 68%;
+            left: 50%;
+            font-size: 35px;
+            transform: translateX(-50%);
+        }
+        
+        /* 感叹号 */
+        .exclamation {
+            position: absolute;
+            top: -55px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 55px;
+            color: #FF6B6B;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        
+        .exclamation.show {
+            opacity: 1;
+            animation: exclamation-bounce 0.5s ease-in-out;
+        }
+        
+        @keyframes exclamation-bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+            50% { transform: translateX(-50%) translateY(-25px) scale(1.3); }
+        }
+        
+        /* 对话框 */
+        .speech-bubble {
+            position: absolute;
+            top: -110px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px 28px;
+            border-radius: 28px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            opacity: 0;
+            white-space: nowrap;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+            transition: all 0.3s;
+            z-index: 200;
+        }
+        
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-top: 14px solid white;
+        }
+        
+        .speech-bubble.show {
+            opacity: 1;
+            animation: bubble-pop 0.3s ease-out;
+        }
+        
+        @keyframes bubble-pop {
+            0% { transform: translateX(-50%) scale(0); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+        
+        /* 吞咽效果 */
+        .swallow-effect {
+            position: absolute;
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 35px;
+            background: #DFE6E9;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 150;
+        }
+        
+        .swallow-effect.show {
+            animation: swallow-anim 0.7s ease-in forwards;
+        }
+        
+        @keyframes swallow-anim {
+            0% { opacity: 1; top: 80px; transform: translateX(-50%) scale(1.3); }
+            100% { opacity: 0; top: 170px; transform: translateX(-50%) scale(0.3); }
+        }
+        
+        /* 爱心 */
+        .hearts {
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            opacity: 0;
+        }
+        
+        .hearts.show {
+            animation: hearts-float 1.5s ease-out forwards;
+        }
+        
+        @keyframes hearts-float {
+            0% { opacity: 0; transform: translateX(-50%) translateY(0); }
+            20% { opacity: 1; }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-120px); }
+        }
+        
+        /* 状态栏 */
+        .status-bar {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.85);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 40px;
+            font-size: 22px;
+            z-index: 300;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.35);
+        }
+        
+        /* 控制按钮 */
+        .controls {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 300;
+        }
+        
+        button {
+            padding: 20px 55px;
+            font-size: 1.4em;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            margin: 0 15px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .start-btn {
+            background: linear-gradient(135deg, #00B894 0%, #00CEC9 100%);
+            color: white;
+        }
+        
+        .start-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 45px rgba(0, 206, 201, 0.5);
+        }
+        
+        .reset-btn {
+            background: linear-gradient(135deg, #E17055 0%, #D63031 100%);
+            color: white;
+        }
+        
+        .reset-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 45px rgba(214, 48, 49, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <!-- 天空 -->
+        <div class="sun"></div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        
+        <!-- 背景 -->
+        <div class="mountain mountain-1"></div>
+        <div class="mountain mountain-2"></div>
+        <div class="mountain mountain-3"></div>
+        
+        <div class="tree tree-1"><div class="tree-top"></div><div class="tree-trunk"></div></div>
+        <div class="tree tree-2"><div class="tree-top"></div><div class="tree-trunk"></div></div>
+        <div class="tree tree-3"><div class="tree-top"></div><div class="tree-trunk"></div></div>
+        <div class="tree tree-4"><div class="tree-top"></div><div class="tree-trunk"></div></div>
+        
+        <div class="house">
+            <div class="house-roof"></div>
+            <div class="house-body">
+                <div class="house-door"></div>
+            </div>
+        </div>
+        
+        <div class="flowers flowers-1">🌸🌺🌷</div>
+        <div class="flowers flowers-2">🌻🌹🌺</div>
+        
+        <!-- 小路 -->
+        <div class="path"></div>
+        
+        <!-- 人物容器 -->
+        <div class="character-wrapper" id="characterWrapper">
+            <div class="character" id="character">
+                <div class="name-tag">张鹏</div>
+                <div class="p-head">
+                    <div class="p-hair">👨</div>
+                    <div class="p-eye left" id="eye-left"></div>
+                    <div class="p-eye right" id="eye-right"></div>
+                    <div class="p-eyebrow left" id="eyebrow-left"></div>
+                    <div class="p-eyebrow right" id="eyebrow-right"></div>
+                    <div class="p-nose"></div>
+                    <div class="p-mouth" id="mouth"></div>
+                    <div class="p-blush left"></div>
+                    <div class="p-blush right"></div>
+                    <div class="exclamation" id="exclamation">❗</div>
+                    <div class="speech-bubble" id="speech"></div>
+                    <div class="hearts" id="hearts">💕</div>
+                    <div class="swallow-effect" id="swallow"></div>
+                </div>
+                <div class="p-body">
+                    <div class="p-belly" id="belly"></div>
+                </div>
+                <div class="p-arm left" id="arm-left"><div class="p-hand"></div></div>
+                <div class="p-arm right" id="arm-right"><div class="p-hand"></div></div>
+                <div class="p-leg left" id="leg-left"><div class="p-shoe"></div></div>
+                <div class="p-leg right" id="leg-right"><div class="p-shoe"></div></div>
+            </div>
+        </div>
+        
+        <!-- 粑粑 -->
+        <div class="poop" id="poop">💩</div>
+        
+        <!-- 状态栏 -->
+        <div class="status-bar" id="status">张鹏走在回家的路上...</div>
+        
+        <!-- 控制按钮 -->
+        <div class="controls">
+            <button class="start-btn" onclick="startAnimation()">开始故事</button>
+            <button class="reset-btn" onclick="resetAnimation()">重来</button>
+        </div>
+    </div>
+    
+    <script>
+        let isAnimating = false;
+        
+        const wrapper = document.getElementById('characterWrapper');
+        const character = document.getElementById('character');
+        const eyeLeft = document.getElementById('eye-left');
+        const eyeRight = document.getElementById('eye-right');
+        const eyebrowLeft = document.getElementById('eyebrow-left');
+        const eyebrowRight = document.getElementById('eyebrow-right');
+        const mouth = document.getElementById('mouth');
+        const armLeft = document.getElementById('arm-left');
+        const armRight = document.getElementById('arm-right');
+        const legLeft = document.getElementById('leg-left');
+        const legRight = document.getElementById('leg-right');
+        const belly = document.getElementById('belly');
+        const poop = document.getElementById('poop');
+        const exclamation = document.getElementById('exclamation');
+        const speech = document.getElementById('speech');
+        const swallow = document.getElementById('swallow');
+        const hearts = document.getElementById('hearts');
+        const status = document.getElementById('status');
+        
+        function setStatus(text) {
+            status.textContent = text;
+        }
+        
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        
+        function startWalk() {
+            character.classList.add('walking');
+            armLeft.classList.add('swing-left');
+            armRight.classList.add('swing-right');
+            legLeft.classList.add('walk-forward');
+            legRight.classList.add('walk-back');
+        }
+        
+        function stopWalk() {
+            character.classList.remove('walking');
+            armLeft.classList.remove('swing-left', 'reach-down', 'hold-up', 'eat', 'wave');
+            armRight.classList.remove('swing-right', 'reach-down', 'hold-up', 'eat', 'wave');
+            legLeft.classList.remove('walk-forward');
+            legRight.classList.remove('walk-back');
+        }
+        
+        async function startAnimation() {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            resetAnimation();
+            await delay(500);
+            
+            // 1. 开始走路
+            setStatus('张鹏走在回家的路上...');
+            startWalk();
+            await delay(2000);
+            
+            // 2. 继续走
+            wrapper.style.left = '25%';
+            await delay(2000);
+            
+            // 3. 停下
+            setStatus('咦？那是什么？');
+            stopWalk();
+            await delay(1000);
+            
+            // 4. 惊讶
+            eyeLeft.classList.add('surprised');
+            eyeRight.classList.add('surprised');
+            eyebrowLeft.classList.add('surprised');
+            eyebrowRight.classList.add('surprised');
+            exclamation.classList.add('show');
+            await delay(1200);
+            
+            // 5. 走近
+            setStatus('走近看看...');
+            wrapper.style.left = '38%';
+            startWalk();
+            await delay(1500);
+            stopWalk();
+            await delay(500);
+            
+            // 6. 说话
+            setStatus('');
+            speech.textContent = '我想吃的零食！';
+            speech.classList.add('show');
+            await delay(1800);
+            speech.classList.remove('show');
+            
+            // 7. 张嘴
+            setStatus('准备开吃...');
+            mouth.classList.add('open');
+            await delay(800);
+            
+            // 8. 弯腰捡 - 关键动作
+            setStatus('弯腰捡起来...');
+            character.classList.add('bending');
+            armRight.classList.add('reach-down');
+            await delay(1000);
+            
+            // 9. 手伸到地面
+            setStatus('抓住了！');
+            await delay(600);
+            
+            // 10. 捡起来 - 粑粑到手上
+            poop.classList.add('in-hand');
+            await delay(800);
+            
+            // 11. 站起来
+            setStatus('站起来...');
+            character.classList.remove('bending');
+            character.classList.add('standing-up');
+            armRight.classList.remove('reach-down');
+            armRight.classList.add('hold-up');
+            await delay(800);
+            character.classList.remove('standing-up');
+            
+            // 12. 拿到嘴边 - 关键动作
+            setStatus('放到嘴里...');
+            poop.classList.remove('in-hand');
+            poop.classList.add('to-mouth');
+            armRight.classList.remove('hold-up');
+            armRight.classList.add('eat');
+            await delay(1000);
+            
+            // 13. 吃进去
+            setStatus('吃进去了！');
+            poop.style.opacity = '0';
+            mouth.classList.remove('open');
+            await delay(600);
+            
+            // 14. 嚼嚼嚼
+            setStatus('嚼嚼嚼...');
+            mouth.classList.add('chewing');
+            await delay(2500);
+            
+            // 15. 吞咽
+            setStatus('吞下去...');
+            mouth.classList.remove('chewing');
+            mouth.classList.add('happy');
+            swallow.classList.add('show');
+            await delay(1000);
+            
+            // 16. 满足
+            setStatus('好满足啊~');
+            belly.classList.add('full');
+            hearts.classList.add('show');
+            speech.textContent = '好满足啊~';
+            speech.classList.add('show');
+            armRight.classList.remove('eat');
+            armLeft.classList.add('wave');
+            await delay(2000);
+            speech.classList.remove('show');
+            
+            // 17. 打嗝
+            setStatus('打嗝！');
+            speech.textContent = '嗝~';
+            speech.classList.add('show');
+            await delay(1500);
+            speech.classList.remove('show');
+            
+            // 18. 继续走
+            setStatus('心满意足地继续走...');
+            exclamation.classList.remove('show');
+            armLeft.classList.remove('wave');
+            mouth.classList.remove('happy');
+            wrapper.style.left = '88%';
+            startWalk();
+            await delay(3500);
+            
+            // 19. 结束
+            setStatus('故事结束！张鹏：下次还吃！💩');
+            stopWalk();
+            
+            isAnimating = false;
+        }
+        
+        function resetAnimation() {
+            wrapper.style.left = '5%';
+            character.style.bottom = '';
+            character.className = 'character';
+            legLeft.className = 'p-leg left';
+            legRight.className = 'p-leg right';
+            eyeLeft.className = 'p-eye left';
+            eyeRight.className = 'p-eye right';
+            eyebrowLeft.className = 'p-eyebrow left';
+            eyebrowRight.className = 'p-eyebrow right';
+            mouth.className = 'p-mouth';
+            armLeft.className = 'p-arm left';
+            armRight.className = 'p-arm right';
+            belly.className = 'p-belly';
+            poop.className = 'poop';
+            exclamation.className = 'exclamation';
+            speech.className = 'speech-bubble';
+            hearts.className = 'hearts';
+            swallow.className = 'swallow-effect';
+            setStatus('张鹏走在回家的路上...');
+        }
+    </script>
+</body>
+</html>
