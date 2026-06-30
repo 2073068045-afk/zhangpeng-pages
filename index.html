@@ -66,20 +66,55 @@ body{background:#0a0a2e;color:#fff;font-family:'Microsoft YaHei','PingFang SC',s
 <div class="mic" id="mic">🎤</div>
 
 <script>
-// 歌词数据
+// 歌词数据 - 带停顿标记，让朗读更有感情
 var songData = [
-  {tag:'主歌 A',type:'v',lines:['有个男人叫闫世昌','高大威猛又善良','张鹏从小就喊他爸','一喊就是好几趟']},
-  {tag:'主歌 B',type:'v',lines:['闫世昌 脸一板','张鹏吓得不敢喘','闫世昌 笑一笑','张鹏开心到处跑']},
-  {tag:'副歌',type:'c',lines:['闫世昌是张鹏爸爸','张鹏是闫世昌的娃','这关系 千真万确','谁敢质疑谁尴尬','闫世昌是张鹏爸爸','张鹏乖乖叫爸爸','血脉相连情意深','父子情深传万家']},
-  {tag:'主歌 C',type:'v',lines:['闫世昌 有钱花','张鹏零钱不够花','闫世昌 说句话','张鹏吓得腿发麻']},
-  {tag:'副歌 ×2',type:'c',lines:['闫世昌是张鹏爸爸','张鹏是闫世昌的娃','这关系 千真万确','谁敢质疑谁尴尬','闫世昌是张鹏爸爸','张鹏乖乖叫爸爸','血脉相连情意深','父子情深传万家']},
-  {tag:'结尾',type:'o',lines:['闫世昌 张鹏的 爸爸！']}
+  {tag:'主歌 A',type:'v',lines:[
+    '有个男人叫闫世昌，',
+    '高大威猛又善良。',
+    '张鹏从小就喊他爸，',
+    '一喊就是好几趟。'
+  ],pause:800},
+  {tag:'主歌 B',type:'v',lines:[
+    '闫世昌，脸一板。',
+    '张鹏吓得不敢喘。',
+    '闫世昌，笑一笑。',
+    '张鹏开心到处跑！'
+  ],pause:800},
+  {tag:'副歌',type:'c',lines:[
+    '闫世昌，是张鹏爸爸！',
+    '张鹏，是闫世昌的娃！',
+    '这关系，千真万确。',
+    '谁敢质疑，谁尴尬！',
+    '闫世昌，是张鹏爸爸！',
+    '张鹏，乖乖叫爸爸！',
+    '血脉相连，情意深。',
+    '父子情深，传万家！'
+  ],pause:1000},
+  {tag:'主歌 C',type:'v',lines:[
+    '闫世昌，有钱花。',
+    '张鹏零钱不够花。',
+    '闫世昌，说句话。',
+    '张鹏吓得腿发麻。'
+  ],pause:800},
+  {tag:'副歌 ×2',type:'c',lines:[
+    '闫世昌，是张鹏爸爸！',
+    '张鹏，是闫世昌的娃！',
+    '这关系，千真万确。',
+    '谁敢质疑，谁尴尬！',
+    '闫世昌，是张鹏爸爸！',
+    '张鹏，乖乖叫爸爸！',
+    '血脉相连，情意深。',
+    '父子情深，传万家！'
+  ],pause:1000},
+  {tag:'结尾',type:'o',lines:['闫世昌……张鹏的……爸爸！'],pause:0}
 ];
 
 // 渲染歌词
 var lyricsEl = document.getElementById('lyrics');
 var allLineEls = [];
-songData.forEach(function(sec){
+var sectionPauses = []; // 记录每段结束后的停顿
+var lineToSection = []; // 每行属于哪个段落
+songData.forEach(function(sec,secIdx){
   var div = document.createElement('div');
   div.className = 'sec';
   var tagClass = sec.type==='c'?'tag-c':sec.type==='o'?'tag-o':'tag-v';
@@ -92,7 +127,9 @@ songData.forEach(function(sec){
     p.textContent = txt;
     div.appendChild(p);
     allLineEls.push(p);
+    lineToSection.push(secIdx);
   });
+  sectionPauses.push(sec.pause || 500);
   lyricsEl.appendChild(div);
 });
 
@@ -161,6 +198,12 @@ function speakOne(){
   if(!singing||lineIdx>=allLineEls.length){stopSing();return}
   var el=allLineEls[lineIdx];
   var txt=el.getAttribute('data-text')||el.textContent;
+  var secIdx=lineToSection[lineIdx];
+  var sec=songData[secIdx];
+  // 判断是否是段落最后一行
+  var isLastInSec=(lineIdx>0 && lineToSection[lineIdx]!==lineToSection[lineIdx-1]) || 
+                   lineIdx===allLineEls.length-1 ||
+                   (lineIdx<allLineEls.length-1 && lineToSection[lineIdx]!==lineToSection[lineIdx+1]);
   // 高亮
   for(var i=0;i<allLineEls.length;i++) allLineEls[i].classList.remove('hi');
   el.classList.add('hi');
@@ -169,19 +212,37 @@ function speakOne(){
   var pct=Math.round((lineIdx+1)/allLineEls.length*100);
   document.getElementById('barFill').style.width=pct+'%';
   document.getElementById('info').textContent='🎤 第 '+(lineIdx+1)+'/'+allLineEls.length+' 句';
-  // 语音
+  // 语音 - 根据段落类型调整情感
   var utt=new SpeechSynthesisUtterance(txt);
   utt.lang='zh-CN';
-  utt.rate=0.9;
-  utt.pitch=1.1;
   utt.volume=1;
-  // 选中文语音
-  var voices=speechSynthesis.getVoices();
-  for(var j=0;j<voices.length;j++){
-    if(voices[j].lang.indexOf('zh')===0){utt.voice=voices[j];break}
+  // 副歌更有力量，主歌更温柔
+  if(sec.type==='c'){
+    utt.rate=0.75;   // 副歌慢一点，更有气势
+    utt.pitch=1.3;   // 副歌音调高一点
+  }else if(sec.type==='o'){
+    utt.rate=0.6;    // 结尾最慢，深情
+    utt.pitch=1.0;
+  }else{
+    utt.rate=0.82;   // 主歌适中
+    utt.pitch=1.15;
   }
-  utt.onend=function(){lineIdx++;if(singing)setTimeout(speakOne,500)};
-  utt.onerror=function(){lineIdx++;if(singing)setTimeout(speakOne,300)};
+  // 选中文语音（优先女声）
+  var voices=speechSynthesis.getVoices();
+  var bestVoice=null;
+  for(var j=0;j<voices.length;j++){
+    var v=voices[j];
+    if(v.lang.indexOf('zh')===0){
+      bestVoice=v;
+      if(v.name.indexOf('Female')>=0 || v.name.indexOf('female')>=0 || v.name.indexOf('女')>=0) break;
+      if(v.name.indexOf('Xiaoxiao')>=0 || v.name.indexOf('Xiaoyi')>=0) break;
+    }
+  }
+  if(bestVoice) utt.voice=bestVoice;
+  // 停顿：段落之间停更久
+  var delay=isLastInSec?(sec.pause||800):400;
+  utt.onend=function(){lineIdx++;if(singing)setTimeout(speakOne,delay)};
+  utt.onerror=function(){lineIdx++;if(singing)setTimeout(speakOne,200)};
   speechSynthesis.speak(utt);
 }
 
