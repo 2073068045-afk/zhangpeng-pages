@@ -127,7 +127,7 @@ S.forEach(function(s,i){
 });
 
 // === BPM 控制 ===
-var BPM=110; // 每分钟拍数（加快）
+var BPM=130; // 每分钟拍数（更快）
 var beatSec=60/BPM; // 每拍秒数
 
 // === 音乐 ===
@@ -263,8 +263,8 @@ function speakR(){
   // 节奏控制：加快语速
   var charCount=txt.replace(/\s/g,'').length;
   var targetSec=lineSec;
-  var normalRate=charCount*0.28; // 每字0.28秒（更快）
-  var rate=Math.max(0.6,Math.min(1.4,normalRate/targetSec));
+  var normalRate=charCount*0.22; // 每字0.22秒（更快）
+  var rate=Math.max(0.7,Math.min(1.6,normalRate/targetSec));
   utt.rate=rate;
 
   // 音调：副歌高，主歌低
