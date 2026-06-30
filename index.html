@@ -285,7 +285,7 @@
 
     singing = true;
     document.getElementById('singBtn').classList.add('active');
-    document.getElementById('singIcon').textContent = '⏹');
+    document.getElementById('singIcon').textContent = '⏹';
     document.getElementById('statusText').textContent = '🎤 正在唱歌中...';
     document.getElementById('micAnim').classList.add('show');
 
@@ -345,7 +345,7 @@
     singing = false;
     speechSynthesis.cancel();
     document.getElementById('singBtn').classList.remove('active');
-    document.getElementById('singIcon').textContent = '🎤');
+    document.getElementById('singIcon').textContent = '🎤';
     document.getElementById('micAnim').classList.remove('show');
     document.getElementById('progressFill').style.width = '0%';
     document.getElementById('statusText').textContent = '✅ 演唱完毕！点击重新开始';
