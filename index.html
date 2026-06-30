@@ -273,11 +273,25 @@ function speakR(){
   else if(sec.c==='o') utt.pitch=1.0;
   else utt.pitch=1.2;
 
-  // 选中文语音
+  // 强制选 Xiaoxiao 或 Xiaoyi（Edge 中文女声）
   var voices=speechSynthesis.getVoices();
+  var best=null;
   for(var j=0;j<voices.length;j++){
-    if(voices[j].lang.indexOf('zh')===0){utt.voice=voices[j];break}
+    var vn=voices[j].name;
+    if(vn.indexOf('Xiaoxiao')>=0||vn.indexOf('晓晓')>=0){best=voices[j];break}
   }
+  if(!best){
+    for(var j=0;j<voices.length;j++){
+      var vn=voices[j].name;
+      if(vn.indexOf('Xiaoyi')>=0||vn.indexOf('晓怡')>=0){best=voices[j];break}
+    }
+  }
+  if(!best){
+    for(var j=0;j<voices.length;j++){
+      if(voices[j].lang.indexOf('zh')>=0){best=voices[j];break}
+    }
+  }
+  if(best) utt.voice=best;
 
   // 下一句的延迟 = 拍数 * 每拍秒数
   var nextDelay=Math.round(lineSec*1000);
