@@ -6,261 +6,312 @@
 <title>闫世昌是张鹏爸爸</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a2e;color:#fff;font-family:'Microsoft YaHei','PingFang SC',sans-serif;min-height:100vh}
-.container{max-width:800px;margin:0 auto;padding:40px 20px}
-.header{text-align:center;margin-bottom:40px}
-.title{font-size:42px;font-weight:900;background:linear-gradient(45deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:grad 3s ease infinite}
-@keyframes grad{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.subtitle{font-size:16px;color:#aaa;margin-top:10px}
-.player{text-align:center;margin-bottom:30px}
-.btn-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.btn{width:90px;height:90px;border-radius:50%;border:none;color:#fff;cursor:pointer;font-size:13px;font-weight:bold;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;transition:all .3s}
-.btn-music{background:linear-gradient(135deg,#4d96ff,#6bcb77);box-shadow:0 0 20px rgba(77,150,255,.4)}
-.btn-sing{background:linear-gradient(135deg,#ff6b6b,#ee5a24);box-shadow:0 0 20px rgba(255,107,107,.4)}
+body{background:#0a0a2e;color:#fff;font-family:'Microsoft YaHei','PingFang SC',sans-serif;min-height:100vh;overflow-x:hidden}
+.container{max-width:800px;margin:0 auto;padding:30px 20px}
+.header{text-align:center;margin-bottom:30px}
+.title{font-size:40px;font-weight:900;background:linear-gradient(45deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:g 3s ease infinite}
+@keyframes g{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.sub{font-size:15px;color:#aaa;margin-top:8px}
+.player{text-align:center;margin-bottom:25px}
+.btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{width:85px;height:85px;border-radius:50%;border:none;color:#fff;cursor:pointer;font-size:12px;font-weight:bold;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:all .3s}
+.b1{background:linear-gradient(135deg,#4d96ff,#6bcb77);box-shadow:0 0 20px rgba(77,150,255,.4)}
+.b2{background:linear-gradient(135deg,#ff6b6b,#ee5a24);box-shadow:0 0 20px rgba(255,107,107,.4)}
 .btn:hover{transform:scale(1.1)}
-.btn.on{animation:pulse 1s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 20px rgba(255,107,107,.4)}50%{box-shadow:0 0 40px rgba(255,107,107,.8)}}
-.btn-icon{font-size:28px}
-.btn-text{font-size:11px;opacity:.8}
-.bar{width:100%;height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:15px;overflow:hidden}
-.bar-fill{height:100%;background:linear-gradient(90deg,#ff6b6b,#ffd93d);width:0%;transition:width .3s}
-.info{margin-top:8px;color:#888;font-size:13px}
-.lyrics{background:rgba(255,255,255,.05);border-radius:20px;padding:30px;border:1px solid rgba(255,255,255,.1)}
-.sec{margin-bottom:25px}
-.sec-tag{display:inline-block;padding:3px 10px;border-radius:15px;font-size:12px;margin-bottom:8px;font-weight:bold}
-.tag-v{background:rgba(77,150,255,.2);color:#4d96ff}
-.tag-c{background:rgba(255,107,107,.2);color:#ff6b6b}
-.tag-o{background:rgba(255,217,61,.2);color:#ffd93d}
-.line{font-size:20px;line-height:1.8;padding:4px 0 4px 12px;border-left:3px solid transparent;transition:all .3s}
-.line.hi{color:#ffd93d;border-left-color:#ffd93d;text-shadow:0 0 15px rgba(255,217,61,.5);transform:scale(1.03);background:rgba(255,217,61,.06);border-radius:6px}
-.chorus .line{font-size:24px;font-weight:bold}
-.footer{text-align:center;margin-top:40px;color:#555;font-size:14px}
-.mic{position:fixed;bottom:20px;right:20px;font-size:50px;opacity:0;transition:opacity .5s;pointer-events:none}
-.mic.on{opacity:1;animation:bounce .6s infinite alternate}
-@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+.btn.on{animation:p 1s infinite}
+@keyframes p{0%,100%{box-shadow:0 0 20px rgba(255,107,107,.4)}50%{box-shadow:0 0 40px rgba(255,107,107,.8)}}
+.bi{font-size:26px}.bt{font-size:10px;opacity:.8}
+.bar{width:100%;height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:12px;overflow:hidden}
+.bf{height:100%;background:linear-gradient(90deg,#ff6b6b,#ffd93d);width:0%;transition:width .3s}
+.info{margin-top:6px;color:#888;font-size:12px}
+.lyrics{background:rgba(255,255,255,.05);border-radius:16px;padding:25px;border:1px solid rgba(255,255,255,.1)}
+.sec{margin-bottom:20px}
+.stag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;margin-bottom:6px;font-weight:bold}
+.sv{background:rgba(77,150,255,.2);color:#4d96ff}
+.sc{background:rgba(255,107,107,.2);color:#ff6b6b}
+.so{background:rgba(255,217,61,.2);color:#ffd93d}
+.ln{font-size:19px;line-height:1.7;padding:3px 0 3px 10px;border-left:3px solid transparent;transition:all .25s}
+.ln.hi{color:#ffd93d;border-left-color:#ffd93d;text-shadow:0 0 12px rgba(255,217,61,.5);transform:scale(1.04);background:rgba(255,217,61,.06);border-radius:5px}
+.chorus .ln{font-size:22px;font-weight:bold}
+.ft{text-align:center;margin-top:35px;color:#555;font-size:13px}
+.mic{position:fixed;bottom:15px;right:15px;font-size:45px;opacity:0;transition:opacity .4s;pointer-events:none;z-index:99}
+.mic.on{opacity:1;animation:b .5s infinite alternate}
+@keyframes b{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+.note{position:fixed;font-size:24px;opacity:0;pointer-events:none;z-index:98;animation:nf 1.5s forwards}
+@keyframes nf{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-80px) scale(1.5)}}
 </style>
 </head>
 <body>
 <div class="container">
   <div class="header">
     <div class="title">闫世昌是张鹏爸爸</div>
-    <div class="subtitle">🎤 语音朗读版 · 父子情深</div>
+    <div class="sub">🎤 节奏演唱版 · 父子情深</div>
   </div>
   <div class="player">
     <div class="btn-row">
-      <button class="btn btn-music" id="btnMusic" onclick="toggleMusic()">
-        <span class="btn-icon" id="iconMusic">🎵</span>
-        <span class="btn-text">背景音乐</span>
+      <button class="btn b1" id="bM" onclick="togMusic()">
+        <span class="bi" id="iM">🎵</span><span class="bt">背景音乐</span>
       </button>
-      <button class="btn btn-sing" id="btnSing" onclick="startSing()">
-        <span class="btn-icon" id="iconSing">🎤</span>
-        <span class="btn-text">开始唱歌</span>
+      <button class="btn b2" id="bS" onclick="go()">
+        <span class="bi" id="iS">🎤</span><span class="bt">开始唱歌</span>
       </button>
     </div>
-    <div class="bar"><div class="bar-fill" id="barFill"></div></div>
-    <div class="info" id="info">点击「开始唱歌」听语音朗读</div>
+    <div class="bar"><div class="bf" id="bf"></div></div>
+    <div class="info" id="inf">点击「开始唱歌」听节奏演唱</div>
   </div>
-  <div class="lyrics" id="lyrics"></div>
-  <div class="footer">献给闫世昌和张鹏</div>
+  <div class="lyrics" id="ly"></div>
+  <div class="ft">献给闫世昌和张鹏</div>
 </div>
-<div class="mic" id="mic">🎤</div>
+<div class="mic" id="mc">🎤</div>
 
 <script>
-// 歌词数据 - 带停顿标记，让朗读更有感情
-var songData = [
-  {tag:'主歌 A',type:'v',lines:[
-    '有个男人叫闫世昌，',
-    '高大威猛又善良。',
-    '张鹏从小就喊他爸，',
-    '一喊就是好几趟。'
-  ],pause:800},
-  {tag:'主歌 B',type:'v',lines:[
-    '闫世昌，脸一板。',
-    '张鹏吓得不敢喘。',
-    '闫世昌，笑一笑。',
-    '张鹏开心到处跑！'
-  ],pause:800},
-  {tag:'副歌',type:'c',lines:[
-    '闫世昌，是张鹏爸爸！',
-    '张鹏，是闫世昌的娃！',
-    '这关系，千真万确。',
-    '谁敢质疑，谁尴尬！',
-    '闫世昌，是张鹏爸爸！',
-    '张鹏，乖乖叫爸爸！',
-    '血脉相连，情意深。',
-    '父子情深，传万家！'
-  ],pause:1000},
-  {tag:'主歌 C',type:'v',lines:[
-    '闫世昌，有钱花。',
-    '张鹏零钱不够花。',
-    '闫世昌，说句话。',
-    '张鹏吓得腿发麻。'
-  ],pause:800},
-  {tag:'副歌 ×2',type:'c',lines:[
-    '闫世昌，是张鹏爸爸！',
-    '张鹏，是闫世昌的娃！',
-    '这关系，千真万确。',
-    '谁敢质疑，谁尴尬！',
-    '闫世昌，是张鹏爸爸！',
-    '张鹏，乖乖叫爸爸！',
-    '血脉相连，情意深。',
-    '父子情深，传万家！'
-  ],pause:1000},
-  {tag:'结尾',type:'o',lines:['闫世昌……张鹏的……爸爸！'],pause:0}
+// === 歌词：每句带节拍数和重音标记 ===
+// beat=拍数, em=重读字位置(-1=无)
+var S=[
+  {t:'主歌A',c:'v',p:700,lines:[
+    {txt:'有个男人叫闫世昌',beat:4,em:5},
+    {txt:'高大威猛又善良',beat:4,em:2},
+    {txt:'张鹏从小就喊他爸',beat:4,em:5},
+    {txt:'一喊就是好几趟',beat:4,em:3}
+  ]},
+  {t:'主歌B',c:'v',p:700,lines:[
+    {txt:'闫世昌 脸一板',beat:3,em:0},
+    {txt:'张鹏吓得不敢喘',beat:4,em:3},
+    {txt:'闫世昌 笑一笑',beat:3,em:0},
+    {txt:'张鹏开心到处跑',beat:4,em:4}
+  ]},
+  {t:'副歌',c:'c',p:900,lines:[
+    {txt:'闫世昌 是张鹏爸爸',beat:4,em:0},
+    {txt:'张鹏 是闫世昌的娃',beat:4,em:0},
+    {txt:'这关系 千真万确',beat:4,em:3},
+    {txt:'谁敢质疑 谁尴尬',beat:4,em:1},
+    {txt:'闫世昌 是张鹏爸爸',beat:4,em:0},
+    {txt:'张鹏 乖乖叫爸爸',beat:4,em:4},
+    {txt:'血脉相连 情意深',beat:4,em:0},
+    {txt:'父子情深 传万家',beat:4,em:0}
+  ]},
+  {t:'主歌C',c:'v',p:700,lines:[
+    {txt:'闫世昌 有钱花',beat:3,em:0},
+    {txt:'张鹏零钱不够花',beat:4,em:4},
+    {txt:'闫世昌 说句话',beat:3,em:0},
+    {txt:'张鹏吓得腿发麻',beat:4,em:3}
+  ]},
+  {t:'副歌×2',c:'c',p:900,lines:[
+    {txt:'闫世昌 是张鹏爸爸',beat:4,em:0},
+    {txt:'张鹏 是闫世昌的娃',beat:4,em:0},
+    {txt:'这关系 千真万确',beat:4,em:3},
+    {txt:'谁敢质疑 谁尴尬',beat:4,em:1},
+    {txt:'闫世昌 是张鹏爸爸',beat:4,em:0},
+    {txt:'张鹏 乖乖叫爸爸',beat:4,em:4},
+    {txt:'血脉相连 情意深',beat:4,em:0},
+    {txt:'父子情深 传万家',beat:4,em:0}
+  ]},
+  {t:'结尾',c:'o',p:0,lines:[
+    {txt:'闫世昌 张鹏的 爸爸',beat:6,em:5}
+  ]}
 ];
 
-// 渲染歌词
-var lyricsEl = document.getElementById('lyrics');
-var allLineEls = [];
-var sectionPauses = []; // 记录每段结束后的停顿
-var lineToSection = []; // 每行属于哪个段落
-songData.forEach(function(sec,secIdx){
-  var div = document.createElement('div');
-  div.className = 'sec';
-  var tagClass = sec.type==='c'?'tag-c':sec.type==='o'?'tag-o':'tag-v';
-  if(sec.type==='c') div.className += ' chorus';
-  div.innerHTML = '<div class="sec-tag '+tagClass+'">'+sec.tag+'</div>';
-  sec.lines.forEach(function(txt){
-    var p = document.createElement('div');
-    p.className = 'line';
-    p.setAttribute('data-text', txt);
-    p.textContent = txt;
-    div.appendChild(p);
-    allLineEls.push(p);
-    lineToSection.push(secIdx);
+// === 渲染歌词 ===
+var ly=document.getElementById('ly'),A=[],AS=[];
+S.forEach(function(s,i){
+  var d=document.createElement('div');d.className='sec';
+  if(s.c==='c')d.className+=' chorus';
+  d.innerHTML='<div class="stag '+(s.c==='c'?'sc':s.c==='o'?'so':'sv')+'">'+s.t+'</div>';
+  s.lines.forEach(function(l){
+    var p=document.createElement('div');p.className='ln';
+    p.setAttribute('data-text',l.txt);
+    p.textContent=l.txt;
+    d.appendChild(p);A.push(p);
   });
-  sectionPauses.push(sec.pause || 500);
-  lyricsEl.appendChild(div);
+  AS.push(d);ly.appendChild(d);
 });
 
-// 背景音乐
-var audioCtx = null, musicOn = false;
-var melody = [
-  392,.4,440,.4,494,.4,523,.6,494,.4,440,.4,392,.4,440,.6,
-  330,.4,349,.4,392,.4,440,.6,392,.4,349,.4,330,.4,392,.6,
-  523,.3,494,.3,440,.3,392,.5,349,.3,392,.3,440,.3,494,.5,
-  523,.3,587,.3,523,.3,494,.5,440,.3,392,.3,440,.3,523,.5,
-  587,.3,523,.3,494,.3,440,.5,523,.3,587,.3,523,.3,494,.5,
-  440,.3,392,.3,440,.3,523,.5,494,.3,440,.3,392,.3,440,.5,
-  587,.3,523,.3,494,.3,440,.5,523,.3,587,.3,659,.3,587,.5,
-  523,.3,494,.3,440,.3,392,.5,440,.5,523,.5,392,.8,
-  330,.3,349,.3,392,.3,440,.5,392,.3,349,.3,330,.3,392,.5,
-  440,.3,494,.3,523,.3,494,.5,440,.3,392,.3,440,.3,523,.5,
-  587,.3,523,.3,494,.3,440,.5,523,.3,587,.3,523,.3,494,.5,
-  440,.3,392,.3,440,.3,523,.5,494,.3,440,.3,392,.3,440,.5,
-  587,.3,523,.3,494,.3,440,.5,523,.3,587,.3,659,.3,587,.5,
-  523,.3,494,.3,440,.3,392,.5,440,.5,523,.5,392,.8,
-  523,.5,587,.5,659,.5,784,1.2
-];
+// === BPM 控制 ===
+var BPM=90; // 每分钟拍数
+var beatSec=60/BPM; // 每拍秒数
 
-function playNote(ctx,f,s,d,v){
-  var o=ctx.createOscillator(),g=ctx.createGain();
+// === 音乐 ===
+var ac=null,mOn=false;
+function togMusic(){
+  var b=document.getElementById('bM');
+  if(!mOn){
+    if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();
+    playSong(ac,ac.currentTime+.1);
+    mOn=true;b.classList.add('on');document.getElementById('iM').textContent='🔊';
+  }else{
+    mOn=false;if(ac){ac.close();ac=null}b.classList.remove('on');document.getElementById('iM').textContent='🎵';
+  }
+}
+
+function pN(c,f,s,d,v){
+  var o=c.createOscillator(),g=c.createGain();
   o.type='sine';o.frequency.value=f;
   g.gain.setValueAtTime(v,s);g.gain.exponentialRampToValueAtTime(.001,s+d);
-  o.connect(g);g.connect(ctx.destination);o.start(s);o.stop(s+d);
+  o.connect(g);g.connect(c.destination);o.start(s);o.stop(s+d);
 }
 
-function toggleMusic(){
-  var btn=document.getElementById('btnMusic');
-  if(!musicOn){
-    if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-    var t=audioCtx.currentTime+.1;
-    for(var i=0;i<melody.length;i+=2) playNote(audioCtx,melody[i],t+melody[i+1]*.5,melody[i+1]*.48,.12);
-    musicOn=true;btn.classList.add('on');
-    document.getElementById('iconMusic').textContent='🔊';
-  }else{
-    musicOn=false;
-    if(audioCtx){audioCtx.close();audioCtx=null}
-    btn.classList.remove('on');
-    document.getElementById('iconMusic').textContent='🎵';
+// 简单和弦进行：C-Am-F-G 循环
+var chords=[
+  [262,330,392], // C
+  [220,262,330], // Am
+  [175,220,262], // F
+  [196,247,294]  // G
+];
+
+function playSong(ctx,t){
+  // 和弦循环
+  var barLen=beatSec*4;
+  for(var bar=0;bar<20;bar++){
+    var ch=chords[bar%4];
+    var bt=t+bar*barLen;
+    // 每拍弹一次和弦
+    for(var b=0;b<4;b++){
+      ch.forEach(function(f){pN(ctx,f,bt+b*beatSec,beatSec*.8,.06)});
+    }
+    // bass
+    pN(ctx,ch[0]/2,bt,barLen*.9,.1);
+    // 鼓点：1、3拍kick，2、4拍snare
+    for(var b2=0;b2<4;b2++){
+      var st=bt+b2*beatSec;
+      if(b2===0||b2===2){
+        var o=ctx.createOscillator(),g=ctx.createGain();
+        o.type='sine';o.frequency.value=80;
+        g.gain.setValueAtTime(.2,st);g.gain.exponentialRampToValueAtTime(.001,st+.15);
+        o.connect(g);g.connect(ctx.destination);o.start(st);o.stop(st+.15);
+      }
+      if(b2===1||b2===3){
+        var buf=ctx.createBuffer(1,ctx.sampleRate*.04,ctx.sampleRate);
+        var d=buf.getChannelData(0);for(var j=0;j<d.length;j++)d[j]=(Math.random()*2-1)*.2;
+        var src=ctx.createBufferSource();src.buffer=buf;
+        var g2=ctx.createGain();g2.gain.setValueAtTime(.12,st);g2.gain.exponentialRampToValueAtTime(.001,st+.04);
+        src.connect(g2);g2.connect(ctx.destination);src.start(st);src.stop(st+.04);
+      }
+    }
   }
 }
 
-// 语音唱歌
-var singing=false, lineIdx=0;
+// === 语音唱歌（带节奏）===
+var sing=false,li=0,audioT=0;
 
-function startSing(){
-  if(singing){stopSing();return}
-  if(!('speechSynthesis' in window)){
-    document.getElementById('info').textContent='你的浏览器不支持语音合成';
-    return;
-  }
-  if(!musicOn) toggleMusic();
-  singing=true;lineIdx=0;
-  document.getElementById('btnSing').classList.add('on');
-  document.getElementById('iconSing').textContent='⏹';
-  document.getElementById('info').textContent='🎤 正在唱歌中...';
-  document.getElementById('mic').classList.add('on');
-  speakOne();
+function go(){
+  if(sing){stopS();return}
+  if(!('speechSynthesis' in window)){document.getElementById('inf').textContent='浏览器不支持语音合成';return}
+  if(!mOn)togMusic();
+  sing=true;li=0;
+  // 记录音乐开始时间用于同步
+  if(ac) audioT=ac.currentTime;
+  document.getElementById('bS').classList.add('on');
+  document.getElementById('iS').textContent='⏹';
+  document.getElementById('inf').textContent='🎤 节奏演唱中...';
+  document.getElementById('mc').classList.add('on');
+  speakR();
 }
 
-function speakOne(){
-  if(!singing||lineIdx>=allLineEls.length){stopSing();return}
-  var el=allLineEls[lineIdx];
-  var txt=el.getAttribute('data-text')||el.textContent;
-  var secIdx=lineToSection[lineIdx];
-  var sec=songData[secIdx];
-  // 判断是否是段落最后一行
-  var isLastInSec=(lineIdx>0 && lineToSection[lineIdx]!==lineToSection[lineIdx-1]) || 
-                   lineIdx===allLineEls.length-1 ||
-                   (lineIdx<allLineEls.length-1 && lineToSection[lineIdx]!==lineToSection[lineIdx+1]);
+function speakR(){
+  if(!sing||li>=A.length){stopS();return}
+  var el=A[li];
+  var txt=el.getAttribute('data-text');
+  // 找到对应的歌词数据
+  var globalIdx=0,secIdx=0,lineIdx=0;
+  for(var si=0;si<S.length;si++){
+    if(globalIdx+S[si].lines.length>li){
+      secIdx=si;lineIdx=li-globalIdx;break;
+    }
+    globalIdx+=S[si].lines.length;
+  }
+  var sec=S[secIdx];
+  var ld=sec.lines[lineIdx];
+  var beatCount=ld.beat;
+  var lineSec=beatCount*beatSec; // 这句占多少秒
+
   // 高亮
-  for(var i=0;i<allLineEls.length;i++) allLineEls[i].classList.remove('hi');
+  for(var i=0;i<A.length;i++)A[i].classList.remove('hi');
   el.classList.add('hi');
   el.scrollIntoView({behavior:'smooth',block:'center'});
+
   // 进度
-  var pct=Math.round((lineIdx+1)/allLineEls.length*100);
-  document.getElementById('barFill').style.width=pct+'%';
-  document.getElementById('info').textContent='🎤 第 '+(lineIdx+1)+'/'+allLineEls.length+' 句';
-  // 语音 - 根据段落类型调整情感
+  var pct=Math.round((li+1)/A.length*100);
+  document.getElementById('bf').style.width=pct+'%';
+  document.getElementById('inf').textContent='🎤 '+(li+1)+'/'+A.length;
+
+  // 音符特效
+  spawnNote(el);
+
+  // 构造 SSML 带节奏
+  var words=txt.split(/(?=[\u4e00-\u9fff])/); // 按中文字符拆分
+  var ssml='<speak>';
+  for(var w=0;w<words.length;w++){
+    var word=words[w].replace(/\s/g,'');
+    if(!word)continue;
+    // 重读字加 emphasis
+    if(ld.em>=0 && w===ld.em){
+      ssml+'<emphasis level="strong">'+word+'</emphasis>';
+    }else{
+      ssml+=word;
+    }
+    // 字之间加微停顿，模拟节奏
+    var microPause=Math.round(lineSec/(words.length+1)*1000);
+    if(w<words.length-1) ssml+='<break time="'+microPause+'ms"/>';
+  }
+  ssml+='</speak>';
+
+  // 创建语音
   var utt=new SpeechSynthesisUtterance(txt);
   utt.lang='zh-CN';
   utt.volume=1;
-  // 副歌更有力量，主歌更温柔
-  if(sec.type==='c'){
-    utt.rate=0.75;   // 副歌慢一点，更有气势
-    utt.pitch=1.3;   // 副歌音调高一点
-  }else if(sec.type==='o'){
-    utt.rate=0.6;    // 结尾最慢，深情
-    utt.pitch=1.0;
-  }else{
-    utt.rate=0.82;   // 主歌适中
-    utt.pitch=1.15;
-  }
-  // 选中文语音（优先女声）
+
+  // 节奏控制：根据拍数算语速
+  // 假设每个字约 0.3 秒，beatCount 拼要说完
+  var charCount=txt.replace(/\s/g,'').length;
+  var targetSec=lineSec;
+  var normalRate=charCount*0.35; // 正常读完需要的时间
+  var rate=Math.max(0.5,Math.min(1.2,normalRate/targetSec));
+  utt.rate=rate;
+
+  // 音调：副歌高，主歌低
+  if(sec.c==='c') utt.pitch=1.4;
+  else if(sec.c==='o') utt.pitch=1.0;
+  else utt.pitch=1.2;
+
+  // 选中文语音
   var voices=speechSynthesis.getVoices();
-  var bestVoice=null;
   for(var j=0;j<voices.length;j++){
-    var v=voices[j];
-    if(v.lang.indexOf('zh')===0){
-      bestVoice=v;
-      if(v.name.indexOf('Female')>=0 || v.name.indexOf('female')>=0 || v.name.indexOf('女')>=0) break;
-      if(v.name.indexOf('Xiaoxiao')>=0 || v.name.indexOf('Xiaoyi')>=0) break;
-    }
+    if(voices[j].lang.indexOf('zh')===0){utt.voice=voices[j];break}
   }
-  if(bestVoice) utt.voice=bestVoice;
-  // 停顿：段落之间停更久
-  var delay=isLastInSec?(sec.pause||800):400;
-  utt.onend=function(){lineIdx++;if(singing)setTimeout(speakOne,delay)};
-  utt.onerror=function(){lineIdx++;if(singing)setTimeout(speakOne,200)};
+
+  // 下一句的延迟 = 拍数 * 每拍秒数
+  var nextDelay=Math.round(lineSec*1000);
+
+  utt.onend=function(){li++;if(sing)setTimeout(speakR,nextDelay)};
+  utt.onerror=function(){li++;if(sing)setTimeout(speakR,nextDelay)};
   speechSynthesis.speak(utt);
 }
 
-function stopSing(){
-  singing=false;
-  speechSynthesis.cancel();
-  document.getElementById('btnSing').classList.remove('on');
-  document.getElementById('iconSing').textContent='🎤';
-  document.getElementById('mic').classList.remove('on');
-  document.getElementById('barFill').style.width='0%';
-  document.getElementById('info').textContent='✅ 演唱完毕！点击重新开始';
-  for(var i=0;i<allLineEls.length;i++) allLineEls[i].classList.remove('hi');
+// 音符特效
+function spawnNote(el){
+  var notes=['♪','♫','♬','♩','🎵'];
+  var n=document.createElement('div');
+  n.className='note';
+  n.textContent=notes[Math.floor(Math.random()*notes.length)];
+  var r=el.getBoundingClientRect();
+  n.style.left=(r.right-30)+'px';
+  n.style.top=(r.top)+'px';
+  document.body.appendChild(n);
+  setTimeout(function(){n.remove()},1500);
 }
 
-// 预加载语音
-if(speechSynthesis.onvoiceschanged!==undefined){
-  speechSynthesis.onvoiceschanged=function(){speechSynthesis.getVoices()};
+function stopS(){
+  sing=false;speechSynthesis.cancel();
+  document.getElementById('bS').classList.remove('on');
+  document.getElementById('iS').textContent='🎤';
+  document.getElementById('mc').classList.remove('on');
+  document.getElementById('bf').style.width='0%';
+  document.getElementById('inf').textContent='✅ 演唱完毕！';
+  for(var i=0;i<A.length;i++)A[i].classList.remove('hi');
 }
+
+if(speechSynthesis.onvoiceschanged!==undefined)
+  speechSynthesis.onvoiceschanged=function(){speechSynthesis.getVoices()};
 </script>
 </body>
 </html>
